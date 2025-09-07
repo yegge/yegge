@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gothic Website - Home</title>
+    
+    <!-- Preconnect to Google Fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Import Fonts with fallback handling -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+Display:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="assets/styles.css">
+    
+    <!-- Fallback styles in case external resources fail -->
+    <style>
+        /* Critical inline styles for immediate rendering */
+        body { 
+            margin: 0; 
+            background: #000; 
+            color: #e8e8e8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .loading { 
+            opacity: 0; 
+            transition: opacity 0.3s ease-in;
+        }
+        .loaded { 
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Container -->
+    <div id="header-container" class="loading"></div>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h1>Update</h1>
+            <p>This is your main content area. The header and footer are loaded from separate files for easy maintenance across all pages.</p>
+            
+            <section>
+                <h2>Sample Content Section</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi accumsan turpis posuere cursus ultricies. Ut nunc justo, faucibus id elit nec, convallis pretium nunc.</p>
+                
+                <h3>Subsection Example</h3>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Footer Container -->
+    <div id="footer-container" class="loading"></div>
+    
+    <!-- Component Loader Script -->
+    <script>
+        // Component loader with error handling
+        async function loadComponent(url, containerId) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const html = await response.text();
+                const container = document.getElementById(containerId);
+                container.innerHTML = html;
+                container.classList.remove('loading');
+                container.classList.add('loaded');
+            } catch (error) {
+                console.error(`Error loading ${url}:`, error);
+                // Fallback content if component fails to load
+                document.getElementById(containerId).innerHTML = 
+                    `<div class="error-message">Component failed to load. Please ensure all files are served from a web server.</div>`;
+            }
+        }
+        
+        // Load components when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            loadComponent('header.html', 'header-container');
+            loadComponent('footer.html', 'footer-container');
+        });
+        
+        // Add loaded class to body for additional styling hooks
+        window.addEventListener('load', function() {
+            document.body.classList.add('page-loaded');
+        });
+    </script>
+</body>
+</html>
