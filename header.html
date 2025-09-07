@@ -1,0 +1,74 @@
+<!-- Header Component -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-wrapper">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <a href="index.html" class="logo-link" aria-label="Home">
+                    <!-- You can replace this with an actual logo image -->
+                    <div class="logo-placeholder">
+                        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" fill="#1a1a1a"/>
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#e8e8e8" font-family="Inter" font-size="20" font-weight="700">G</text>
+                        </svg>
+                    </div>
+                    <span class="logo-text">Gothic</span>
+                </a>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="main-navigation" role="navigation" aria-label="Main navigation">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="services.html" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="portfolio.html" class="nav-link">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Toggle (for responsive design) -->
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Menu Script (included with header for encapsulation) -->
+<script>
+    // Self-contained mobile menu functionality
+    (function() {
+        const toggle = document.querySelector('.mobile-menu-toggle');
+        const nav = document.querySelector('.main-navigation');
+        
+        if (toggle && nav) {
+            toggle.addEventListener('click', function() {
+                const isOpen = nav.classList.toggle('mobile-menu-open');
+                toggle.setAttribute('aria-expanded', isOpen);
+                toggle.classList.toggle('menu-open', isOpen);
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!toggle.contains(e.target) && !nav.contains(e.target)) {
+                    nav.classList.remove('mobile-menu-open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    toggle.classList.remove('menu-open');
+                }
+            });
+        }
+    })();
+</script>
