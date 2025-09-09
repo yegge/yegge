@@ -1,0 +1,170 @@
+/* =========================================================
+   YEGGE MODES — global palette + content-only glow
+   Uses Material's built-in scheme IDs: "slate" (dark) and "default" (light).
+   ========================================================= */
+
+/* ---------------------------
+   DARK (slate): ghostly white on true black
+   --------------------------- */
+:root[data-md-color-scheme="slate"] {
+  /* Material design tokens (global) */
+  --md-default-bg-color: #000;     /* page background */
+  --md-default-fg-color: #f5f6f8;  /* main text */
+  --md-surface-bg-color: #000;     /* shells: header, sidebars, drawers, search */
+  --md-surface-fg-color: #f5f6f8;
+
+  --md-accent-fg-color: #e6e7ea;   /* links / accents in content */
+  --md-divider-color: rgba(255,255,255,0.08);
+
+  /* Code colors */
+  --md-code-bg-color: #0c0c0c;
+  --md-code-fg-color: #f2f2f2;
+
+  /* Back-compat tokens some components still read */
+  --md-primary-fg-color: var(--md-default-fg-color);
+  --md-primary-bg-color: var(--md-default-bg-color);
+}
+
+/* Force all major surfaces to adopt the dark surface tokens */
+:root[data-md-color-scheme="slate"] html,
+:root[data-md-color-scheme="slate"] body,
+:root[data-md-color-scheme="slate"] .md-container,
+:root[data-md-color-scheme="slate"] .md-main,
+:root[data-md-color-scheme="slate"] .md-main__inner,
+:root[data-md-color-scheme="slate"] .md-content,
+:root[data-md-color-scheme="slate"] .md-content__inner,
+:root[data-md-color-scheme="slate"] .md-sidebar,
+:root[data-md-color-scheme="slate"] .md-sidebar__scrollwrap,
+:root[data-md-color-scheme="slate"] .md-nav,
+:root[data-md-color-scheme="slate"] .md-header,
+:root[data-md-color-scheme="slate"] .md-tabs,
+:root[data-md-color-scheme="slate"] .md-footer,
+:root[data-md-color-scheme="slate"] .md-search,
+:root[data-md-color-scheme="slate"] .md-search__inner,
+:root[data-md-color-scheme="slate"] .md-search__output,
+:root[data-md-color-scheme="slate"] .md-dialog {
+  background: var(--md-surface-bg-color) !important;
+  color: var(--md-surface-fg-color) !important;
+}
+
+/* Content-only glow (keep nav/search crisp) */
+:root[data-md-color-scheme="slate"] .md-content .md-typeset {
+  color: var(--md-default-fg-color) !important;
+  text-shadow:
+    0 0 0.6px rgba(255,255,255,0.45),
+    0 0 6px   rgba(255,255,255,0.12);
+}
+:root[data-md-color-scheme="slate"] .md-content .md-typeset h1,
+:root[data-md-color-scheme="slate"] .md-content .md-typeset h2,
+:root[data-md-color-scheme="slate"] .md-content .md-typeset h3,
+:root[data-md-color-scheme="slate"] .md-content .md-typeset h4,
+:root[data-md-color-scheme="slate"] .md-content .md-typeset h5,
+:root[data-md-color-scheme="slate"] .md-content .md-typeset h6 {
+  text-shadow:
+    0 0 0.8px rgba(255,255,255,0.55),
+    0 0 8px   rgba(255,255,255,0.16);
+}
+
+/* Links, code, tables (content area) */
+:root[data-md-color-scheme="slate"] .md-content .md-typeset a {
+  color: var(--md-accent-fg-color) !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+:root[data-md-color-scheme="slate"] .md-content .md-typeset pre,
+:root[data-md-color-scheme="slate"] .md-content .md-typeset code,
+:root[data-md-color-scheme="slate"] .md-content .highlight {
+  background: var(--md-code-bg-color) !important;
+  color: var(--md-code-fg-color) !important;
+  text-shadow: none !important;
+  border-radius: 8px;
+}
+:root[data-md-color-scheme="slate"] .md-content .md-typeset table:not([class]) th,
+:root[data-md-color-scheme="slate"] .md-content .md-typeset table:not([class]) td {
+  border-color: var(--md-divider-color) !important;
+}
+
+/* Optional: tiny logo glow */
+:root[data-md-color-scheme="slate"] .md-header__button.md-logo img {
+  max-height: 28px;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.12));
+}
+
+
+/* ---------------------------
+   LIGHT (default): inverted — black on white
+   --------------------------- */
+:root[data-md-color-scheme="default"] {
+  --md-default-bg-color: #fefefe;
+  --md-default-fg-color: #0a0a0a;
+  --md-surface-bg-color: #fff;
+  --md-surface-fg-color: #0a0a0a;
+
+  --md-accent-fg-color: #222;
+  --md-divider-color: rgba(0,0,0,0.08);
+
+  --md-code-bg-color: #f3f3f3;
+  --md-code-fg-color: #111;
+
+  --md-primary-fg-color: var(--md-default-fg-color);
+  --md-primary-bg-color: var(--md-default-bg-color);
+}
+
+/* Force all major surfaces to the light tokens */
+:root[data-md-color-scheme="default"] html,
+:root[data-md-color-scheme="default"] body,
+:root[data-md-color-scheme="default"] .md-container,
+:root[data-md-color-scheme="default"] .md-main,
+:root[data-md-color-scheme="default"] .md-main__inner,
+:root[data-md-color-scheme="default"] .md-content,
+:root[data-md-color-scheme="default"] .md-content__inner,
+:root[data-md-color-scheme="default"] .md-sidebar,
+:root[data-md-color-scheme="default"] .md-sidebar__scrollwrap,
+:root[data-md-color-scheme="default"] .md-nav,
+:root[data-md-color-scheme="default"] .md-header,
+:root[data-md-color-scheme="default"] .md-tabs,
+:root[data-md-color-scheme="default"] .md-footer,
+:root[data-md-color-scheme="default"] .md-search,
+:root[data-md-color-scheme="default"] .md-search__inner,
+:root[data-md-color-scheme="default"] .md-search__output,
+:root[data-md-color-scheme="default"] .md-dialog {
+  background: var(--md-surface-bg-color) !important;
+  color: var(--md-surface-fg-color) !important;
+}
+
+/* Content-only inverted glow */
+:root[data-md-color-scheme="default"] .md-content .md-typeset {
+  color: var(--md-default-fg-color) !important;
+  text-shadow:
+    0 0 0.6px rgba(0,0,0,0.45),
+    0 0 6px   rgba(0,0,0,0.12);
+}
+:root[data-md-color-scheme="default"] .md-content .md-typeset h1,
+:root[data-md-color-scheme="default"] .md-content .md-typeset h2,
+:root[data-md-color-scheme="default"] .md-content .md-typeset h3,
+:root[data-md-color-scheme="default"] .md-content .md-typeset h4,
+:root[data-md-color-scheme="default"] .md-content .md-typeset h5,
+:root[data-md-color-scheme="default"] .md-content .md-typeset h6 {
+  text-shadow:
+    0 0 0.8px rgba(0,0,0,0.55),
+    0 0 8px   rgba(0,0,0,0.16);
+}
+
+/* Links, code, tables (content area) */
+:root[data-md-color-scheme="default"] .md-content .md-typeset a {
+  color: var(--md-accent-fg-color) !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+:root[data-md-color-scheme="default"] .md-content .md-typeset pre,
+:root[data-md-color-scheme="default"] .md-content .md-typeset code,
+:root[data-md-color-scheme="default"] .md-content .highlight {
+  background: var(--md-code-bg-color) !important;
+  color: var(--md-code-fg-color) !important;
+  text-shadow: none !important;
+  border-radius: 8px;
+}
+:root[data-md-color-scheme="default"] .md-content .md-typeset table:not([class]) th,
+:root[data-md-color-scheme="default"] .md-content .md-typeset table:not([class]) td {
+  border-color: var(--md-divider-color) !important;
+}
